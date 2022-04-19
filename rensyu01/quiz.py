@@ -12,17 +12,14 @@ if __name__ == "__main__":
 
     st = datetime.datetime.now()
 
-    while True :
-
-        item = input("答えを入力してください")
-
-        if item in ans[1] :
-            ed = datetime.datetime.now()
-            print("正解")
-            break
-            
-        else :
-            print("不正解。もう一度")
+    item = input("答えを入力してください＞　")
+    ed = datetime.datetime.now()
+    if item in ans[1] :
+        
+        print("正解")
+        
+    else :
+        print("不正解")
 
     print(f"所要時間は{(ed-st).seconds}秒です。")
     
