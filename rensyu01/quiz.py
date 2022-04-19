@@ -16,7 +16,7 @@ if __name__ == "__main__":
     ed = datetime.datetime.now()
     if item in ans[1] :
         
-        print("正解")
+        print("(・∀・)ｲｲﾈ!!  正解")
         
     else :
         print("不正解")
