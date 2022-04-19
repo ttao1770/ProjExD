@@ -8,7 +8,7 @@ if __name__ == "__main__":
 
     ans = choice(list(qa_dict.items())) #listの番号
 
-    print("問題",ans[0])
+    print("問題",ans[0])#問題を表示
 
     st = datetime.datetime.now()
 
