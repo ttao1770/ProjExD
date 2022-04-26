@@ -13,7 +13,7 @@ if __name__ == "__main__":
     entry.grid(row=0,column=0,columnspan=3)
 
 #ボタンの設定
-    def keisan(event):
+    def button_equrle(event):
         num = entry.get()
         res = eval(num)
         entry.delete(0,tk.END)
@@ -25,8 +25,9 @@ if __name__ == "__main__":
         entry.insert(tk.END, txt)
         #tkm.showinfo(txt,f"{txt}のボタンが押されました")
 
-    
-    
+    def button_color(event):
+        entry.delete(0,tk.END)
+
     c = 1
 
     for i in range(3):
@@ -44,7 +45,9 @@ if __name__ == "__main__":
     btn.bind("<1>",button_click)
     btn = tk.Button(root, text = "=", font = ("Time New Roman", 30))
     btn.grid(row = 4, column = 2, padx = 10, pady = 10)
-    btn.bind("<1>",keisan)
-
+    btn.bind("<1>",button_equrle)
+    btn = tk.Button(root, text= "c", font = ("Time New Roman", 30))
+    btn.grid(row = 1, column=3, padx=10, pady=10)
+    btn.bind("<1>",button_color)
     
     root.mainloop()
