@@ -39,21 +39,15 @@ if __name__ == "__main__":
 #ボタンの設定
     c = 1
 
-    for i in range(3):
-         for j in range(3):
-            btn = tk.Button(root, text=i+j+c, font=("Times New Roman", 30))
-            btn.bind("<1>",button_click)
-            if j >= 2:
-                c += 2
-            btn.grid(row = i + 1, column = j)
-    #0のボタンを追加
-    btn = tk.Button(root, text=0, font=("Times New Roman", 30))
-    btn.grid(row = 4, column = 0)
-    btn.bind("<1>",button_click)
-    #＋のボタンを追加
-    btn = tk.Button(root, text = "+", font = ("Time New Roman",30))
-    btn.grid(row = 4, column = 1)
-    btn.bind("<1>",button_click)
+    b_list = [9, 8, 7, 6, 5, 4, 3, 2, 1, 0,"+"]
+    count = 0
+    for i in b_list:
+        btn = tk.Button(root, text=i, font=("Times New Roman", 30))
+        btn.bind("<1>", button_click)
+        c =  count % 3
+        r =  count // 3 + 1
+        btn.grid(row=r, column=c, padx=10, pady=10)
+        count += 1
     #＝のボタンを追加
     btn = tk.Button(root, text = "=", font = ("Time New Roman", 30))
     btn.grid(row = 4, column = 2)
