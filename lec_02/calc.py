@@ -9,13 +9,15 @@ if __name__ == "__main__":
 
     #入力欄の設定
     entry = tk.Entry(root,justify="right",width=10,font=("Times New Roman",40))
+    
     entry.grid(row=0,column=0,columnspan=3)
 
 #ボタンの設定
     def button_click(event):
         btn = event.widget
         txt = btn["text"]
-        tkm.showinfo(txt,f"{txt}のボタンが押されました")
+        entry.insert(tk.END, txt)
+        #tkm.showinfo(txt,f"{txt}のボタンが押されました")
 
     c = 1
 
