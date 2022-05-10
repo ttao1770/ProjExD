@@ -2,6 +2,14 @@ import tkinter as tk
 import tkinter.messagebox as tkm
 import maze_maker as mm
 
+def even_fin():
+    global cx,cy,mx,my,key,c
+    if mx >= 13 and my >= 7:
+        goal = tk.PhotoImage(file = "fig/20.png")
+        cx,cy = 750,450
+        canvas.create_image(cx, cy, image=goal, tag = "goal")
+        c = 0
+    
 def key_down(event):
     global key
 
@@ -27,25 +35,11 @@ def main_proc():
 
     root.after(100,main_proc)
     canvas.coords("tori", cx, cy)
+    even_fin()
 
 def make_startgoal():
     canvas.create_rectangle(100,100,200,200,fill="green")
     canvas.create_rectangle(1300,700,1400,800,fill="red")
-
-def even_fin():
-    global cx,cy,mx,my,key,c
-    if cx >= 1200 and cy >= 600:
-        goal = tk.PhotoImage(file = "fig/20.png")
-        cx,cy = 750,450
-        canvas.create_image(cx, cy, image=goal, tag = "goal")
-        c = 0
-    
-
-
-    
-    
-
-
 
 if __name__ == "__main__":
 
@@ -75,10 +69,6 @@ if __name__ == "__main__":
     
     root.bind("<KeyPress>", key_down)
     root.bind("<KeyRelease>", key_up)
-
-    even_fin()
-
-    
 
     main_proc()
     root.mainloop()
