@@ -34,7 +34,7 @@ def main():
 
     #こうかとんの周りに爆弾が生成されなくなるまで乱数を生成する
     bomb_x,bomb_y = randint(0,sc_rect.width),randint(0,sc_rect.height)
-    while 700 <= bomb_y <= 100 and 300 <= bomb_y <= 500 :
+    while 700 <= bomb_y <= 1000 and 300 <= bomb_y <= 500 :
         bomb_x,bomb_y = randint(0,sc_rect.width),randint(0,sc_rect.height)
 
     bomb_rect.center =  bomb_x,bomb_y
