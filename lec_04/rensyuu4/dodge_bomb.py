@@ -1,4 +1,4 @@
-import random
+from random import random,randint
 import pygame as pg
 import sys
 import time
@@ -31,10 +31,12 @@ def main():
     bomb.set_colorkey((0))
     pg.draw.circle(bomb, (255,0,0), (10,10), 10)    #爆弾用Surfaceに円を描く
     bomb_rect = bomb.get_rect()
-    
-    bomb_x,bomb_y = random.randint(0,sc_rect.width),random.randint(0,sc_rect.height)
+
+    #こうかとんの周りに爆弾が生成されなくなるまで乱数を生成する
+    bomb_x,bomb_y = randint(0,sc_rect.width),randint(0,sc_rect.height)
     while 700 <= bomb_y <= 100 and 300 <= bomb_y <= 500 :
-        bomb_x,bomb_y = random.randint(0,sc_rect.width),random.randint(0,sc_rect.height)
+        bomb_x,bomb_y = randint(0,sc_rect.width),randint(0,sc_rect.height)
+
     bomb_rect.center =  bomb_x,bomb_y
     screen.blit(bomb, bomb_rect)                    #爆弾用Surfaceを画面用Surfaceに貼り付ける
 
@@ -60,14 +62,42 @@ def main():
 
         #練習6
         bomb_rect.move_ip(vx, vy)
+        #ax,ayづつ速くなる
         vx += ax
         vy += ay
         screen.blit(bomb, bomb_rect)
         x,y = check_bound(sc_rect, bomb_rect)
         vx *= x
         vy *= y
+        #バウンドするたびに加速度の正負を反転する
         ax *= x
         ay *= y
+
+        cx, cy = "hoge","hoge"
+
+        #数値が小さすぎたときに爆弾が遅くなるのを予防するため
+        if -0.2 < vx < 0.2 or -0.2 < vy <  0.2:
+            if 0 <= vx <= 0.2 :
+                vx = 1
+            elif -0.2 <= vx < 0 :
+                vy = -1
+            
+            if 0 <= vy <= 0.2:
+                vy = 1
+            elif -0.2 <= vy < 0 :
+                vy = -1
+        
+        #壁にはまってしまった際抜けられるように
+        if vx == cx or vy == cy :
+            x = -1
+            y = -1
+        
+        if vx == 0 or vy == 0:
+            cx = vx
+            cy = vy
+
+        # vx += random()/5 * x
+        # vy += random()/5 * y
 
         # 練習8
         if tori_rect.colliderect(bomb_rect): return 
@@ -79,8 +109,9 @@ def main():
 def check_bound(sc_r, obj_r):   #画面用Rect, {こうかとん,　爆弾}Rect
     #画面内:+1 / 画面外:-1
     x, y = 1, 1
-    if obj_r.left < sc_r.left or sc_r.right < obj_r.right: x = -1
-    if obj_r.top < sc_r.top or sc_r.bottom < obj_r.bottom: y = -1
+    #爆弾の弾道を変則にした
+    if obj_r.left < sc_r.left or sc_r.right < obj_r.right: x = -randint(60,140)/100
+    if obj_r.top < sc_r.top or sc_r.bottom < obj_r.bottom: y = -randint(60,140)/100
     return x, y
 
 if __name__ == "__main__":
