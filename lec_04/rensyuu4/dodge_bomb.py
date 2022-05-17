@@ -31,7 +31,11 @@ def main():
     bomb.set_colorkey((0))
     pg.draw.circle(bomb, (255,0,0), (10,10), 10)    #爆弾用Surfaceに円を描く
     bomb_rect = bomb.get_rect()
-    bomb_rect.center = random.randint(0,sc_rect.width),random.randint(0,sc_rect.height)
+    
+    bomb_x,bomb_y = random.randint(0,sc_rect.width),random.randint(0,sc_rect.height)
+    while 700 <= bomb_y <= 100 and 300 <= bomb_y <= 500 :
+        bomb_x,bomb_y = random.randint(0,sc_rect.width),random.randint(0,sc_rect.height)
+    bomb_rect.center =  bomb_x,bomb_y
     screen.blit(bomb, bomb_rect)                    #爆弾用Surfaceを画面用Surfaceに貼り付ける
 
     vx, vy = +1, +1
