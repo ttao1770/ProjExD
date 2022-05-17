@@ -3,10 +3,10 @@ import pygame as pg
 import sys
 import time
 
-key__delta = {  pg.K_UP : [0, -1],
-                pg.K_DOWN : [0, +1],
-                pg.K_LEFT : [-1, 0],
-                pg.K_RIGHT : [+1, 0],}
+key__delta = {  pg.K_UP : [0, -10],
+                pg.K_DOWN : [0, +10],
+                pg.K_LEFT : [-10, 0],
+                pg.K_RIGHT : [+10, 0],}
 
 def main():
     clock = pg.time.Clock()
@@ -39,6 +39,8 @@ def main():
     screen.blit(bomb, bomb_rect)                    #爆弾用Surfaceを画面用Surfaceに貼り付ける
 
     vx, vy = +1, +1
+    ax = 1/300
+    ay = 1/300
     while True :
         #練習２
         screen.blit(bg_img, bg_rect)
@@ -58,10 +60,14 @@ def main():
 
         #練習6
         bomb_rect.move_ip(vx, vy)
+        vx += ax
+        vy += ay
         screen.blit(bomb, bomb_rect)
         x,y = check_bound(sc_rect, bomb_rect)
         vx *= x
         vy *= y
+        ax *= x
+        ay *= y
 
         # 練習8
         if tori_rect.colliderect(bomb_rect): return 
